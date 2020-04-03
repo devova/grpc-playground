@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package challenges;
+
+message ChallengeRequest {
+  string name = 1;
+}
+
+message ChallengeRequest2 {
+  string nameq = 1;
+}
+
+message ChallengeResponse {
+  int32 id = 1;
+  string name = 2;
+}
+
+
+service Challenge {
+  rpc create (ChallengeRequest) returns (ChallengeResponse) {}
+  rpc bulk_create (stream ChallengeRequest) returns (stream ChallengeResponse) {}
+  rpc list (google.protobuf.Empty) returns (stream ChallengeResponse) {}
+}
+
+service Challenge2 {
+  rpc create (ChallengeRequest2) returns (ChallengeResponse) {}
+}
